@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyle's Level Builiding Site</title>
+</head>
+
+<style>
+    /* 
+        24px * 40 blocks grid width
+        24px * 30 blocks grid width
+        game port width 960px
+        game port height 720px
+    */
+    #level-app {
+        width: 960px;
+        height: 720px;
+        background-color: rgb(139, 214, 243);
+        margin: 0 auto;
+        background-image:
+            repeating-linear-gradient(rgb(92, 154, 179) 0 1px, transparent 1px 100%),
+            repeating-linear-gradient(90deg, rgb(92, 154, 179) 0 1px, transparent 1px 100%);
+        background-size: 24px 24px;
+    }
+
+    .block {
+        user-select: none;
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background-color: greenyellow;
+        z-index: 1;
+        line-height: 4em;
+    }
+
+    .tools {
+        position: relative;
+        float: left;
+    }
+
+    .tool-option {
+        margin: 1em 0;
+    }
+
+    h2 {
+        font-size: medium;
+    }
+
+    .gameplay {
+        position: absolute;
+        right: 2em;
+        top: 0;
+    }
+
+    .start-btn {
+        border: 2px solid green;
+    }
+
+    .stop-btn {
+        border: 2px solid red;
+    }
+
+    #output {
+        width: 220px;
+        display: block;
+        font-size: small;
+        white-space: pre-wrap;
+        resize: none;
+        background-color: rgb(41, 41, 41);
+        color: rgb(211, 255, 162);
+        width: 250px;
+        height: 350px;
+        overflow: scroll;
+        resize: none;
+    }
+
+    .request-inputs {
+        padding: 0.5em;
+    }
+
+    .request-inputs input,
+    .request-inputs label {
+        display: block;
+    }
+
+    #outmsg {
+        width: 100%;
+        max-width: 170px;
+        overflow-wrap: break-word;
+        background-color: rgb(164, 245, 218);
+        max-height: 400px;
+        overflow: hidden;
+    }
+</style>
+
+<body>
+
+    <div class="tools">
+        <p>Note: Refresh after window resize.</p>
+        <h2>New Block Options</h2>
+        <div class="tool-option">
+            <label>
+                Color:
+                <select id="color">
+                    <option value="green">green</option>
+                    <option value="red">red</option>
+                    <option value="gray">gray</option>
+                    <option value="black">black</option>
+                    <option value="blue">blue</option>
+                    <option value="yellow">yellow</option>
+                    <option value="purple">purple</option>
+                    <option value="lime">lime</option>
+                </select>
+            </label>
+        </div>
+        <div class="tool-option">
+            <label>
+                <input id="bouncy" type="checkbox">
+                Bouncy
+            </label>
+        </div>
+        <div class="tool-option">
+            <label>
+                <input id="causes-damage" type="checkbox">
+                Causes Damage
+            </label>
+
+        </div>
+        <hr>
+        <h2>Console Output:</h2>
+        <p id="outmsg"></p>
+    </div>
+
+    <div id="level-app">
+    </div>
+
+    <div class="gameplay">
+        <h2>Game Testing</h2>
+        <button id="start-game" class="start-btn">Start Game</button>
+        <hr>
+        <button id="output-json">Output/Save JSON</button>
+        <button id="input-json">Read/apply JSON</button>
+        <textarea id="output">Paste json</textarea>
+        <hr>
+        <div class="request-inputs">
+            <h2>Levels in DB: (under construction)</h2>
+
+            <label>
+                Level Name
+                <input id="level-name" type="text">
+            </label>
+            <label>
+                Author Name
+                <input id="author-name" type="text">
+            </label>
+            <hr>
+            <label>
+                Level ID (for loading or updating)
+                <input id="level-id" type="text">
+            </label>
+            <hr>
+
+            <button id="save-to-db">Save New to DB</button>
+
+            <button id="update-in-db">Update existing in DB</button>
+            <hr>
+            <button id="load-from-db">Load existing from DB</button>
+        </div>
+
+    </div>
+
+</body>
+
+<script src="./js/level.js"></script>
+
+</html>
