@@ -132,8 +132,42 @@ window.onload = (event) => {
         update_in_db();
     })
 
+    document.querySelector("#load-levels-list").addEventListener("click", () => {
+        load_levels_list();
+    })
+
 
 };
+
+function load_levels_list() {
+    const lev_list = document.querySelector('#levels-list');
+    lev_list.innerHTML = '';
+    try {
+        fetch(`https://cse341-level-api.onrender.com/levels/`)
+            .then(response => response.json())
+            .then(response => {
+
+                response.forEach((level) => {
+                    const new_li = document.createElement("li");
+                    new_li.innerHTML = `<h2>${level.level_name}</h2> by ${level.level_author} ID: ${level._id}`;
+                    new_li.addEventListener("click", () => {
+                        level_list_level_clicked(level._id);
+                    })
+                    lev_list.appendChild(new_li);
+                })
+
+            })
+
+    } catch {
+        document.querySelector("#outmsg").innerHTML = "some error";
+    }
+
+}
+
+function level_list_level_clicked(level_id) {
+    document.querySelector("#level-id").value = level_id;
+    load_from_to_db();
+}
 
 function update_in_db() {
     const level_id = document.querySelector("#level-id").value;

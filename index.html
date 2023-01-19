@@ -91,8 +91,30 @@
         max-width: 170px;
         overflow-wrap: break-word;
         background-color: rgb(164, 245, 218);
-        max-height: 400px;
+        max-height: 300px;
         overflow: hidden;
+    }
+
+    #levels-list {
+        width: 100%;
+        max-width: 170px;
+        overflow-wrap: break-word;
+    }
+
+    #levels-list li {
+        background-color: rgb(224, 221, 221);
+        margin: 0.4em;
+        padding: 0.1em;
+        font-size: smaller;
+        cursor: pointer;
+    }
+
+    #levels-list li h2 {
+        margin: 0.1em;
+    }
+
+    #levels-list li:hover {
+        background-color: rgb(175, 250, 255);
     }
 </style>
 
@@ -132,6 +154,9 @@
         <hr>
         <h2>Console Output:</h2>
         <p id="outmsg"></p>
+        <hr>
+        <button id="load-levels-list">Load levels List</button>
+        <ul id="levels-list"></ul>
     </div>
 
     <div id="level-app">
